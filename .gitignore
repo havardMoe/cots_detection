@@ -130,3 +130,5 @@ dmypy.json
 
 # Directory to ignore
 data/
+# Ignore DS
+.DS_Store
