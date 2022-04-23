@@ -8,4 +8,6 @@ dependencies:
   - flake8
   - pre-commit
   - pytest
+  - tensorflow-object-detection-api
+  - kaggle
   
