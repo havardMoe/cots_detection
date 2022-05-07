@@ -1,14 +1,12 @@
-from venv import create
 import pytest
 import sys
 import os
 import pandas as pd
-
-sys.path.append("code")
-from prep_data_functions import *
 from PIL import Image
 import tensorflow as tf
 import io
+sys.path.append("code")
+from prep_data_functions import *
 
 
 @pytest.mark.download_dataset
