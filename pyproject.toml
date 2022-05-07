@@ -1,3 +1,14 @@
 [tool.black]
 line-length = 80
 target-version = ['py37']
+
+[tool.pytest.ini_options]
+markers = [
+    "download_dataset: makes sure downloads work",
+    "workspace: makes sure workspace is created",
+    "fix_annotation: fixes irregularities in annotation",
+    "to_pascal: tests coco to pascal format",
+    "box_id: Check if id list is correct",
+    "box_class_names: Check if class name list is correct",
+    "create_label_map: Check if label map was correctly created",
+]

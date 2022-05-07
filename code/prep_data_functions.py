@@ -92,6 +92,9 @@ def fix_anno(anno):
 
 
 def to_pascal(row):
+    '''
+        Changes the format on bbox from coco to pascal.
+    '''
     coco_list = row["annotations_coco"]
     pascal_list = []
     for coco in coco_list:
@@ -110,6 +113,9 @@ def to_pascal(row):
 
 
 def box_id(row, class_id):
+    '''
+        returns a list with ids for the bboxes
+    '''
     anno = row["annotations_pascal"]
     N = len(anno)
     if N == 0:
