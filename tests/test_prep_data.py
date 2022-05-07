@@ -5,6 +5,7 @@ import pandas as pd
 from PIL import Image
 import tensorflow as tf
 import io
+import numpy as np
 sys.path.append("code")
 from prep_data_functions import *
 
@@ -17,7 +18,7 @@ def test_download_dataset(tmp_path):
     download_dataset(data_dir, dataset_name)
     data_set_path = os.path.join(data_dir, dataset_name)
 
-    assert os.path.isdir(data_set_path) == True
+    assert os.path.isdir(data_set_path)
 
 
 @pytest.mark.workspace
@@ -35,7 +36,7 @@ def test_create_workspace(tmp_path):
     create_workspace(data_dir)
 
     for dir in created_paths:
-        assert os.path.isdir(dir) == True
+        assert os.path.isdir(dir)
 
 
 @pytest.mark.fix_annotation
@@ -136,7 +137,7 @@ def test_split_train_val():
     n_result_valid = valid_df.shape[0]
 
     assert (
-        n_result_train == n_train_records and n_result_valid == n_result_valid
+        n_result_train == n_train_records and n_result_valid == n_valid_records
     )
 
 
@@ -244,4 +245,4 @@ def test_create_tfrecord(tmp_path):
         data_dir=data_dir,
         play=("None", False),
     )
-    assert os.path.exists(output_path_train) == True
+    assert os.path.exists(output_path_train)

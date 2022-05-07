@@ -12,7 +12,8 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 def download_dataset(data_dir, dataset_name):
     """
     Download the dataset if not already exists
-    Note -> Need to add your kaggle acc and api in kaggle.json file on computer for access to API
+    Note -> Need to add your kaggle acc and api in kaggle.json
+    file on computer for access to API
     """
     competition_dir = os.path.join(data_dir, dataset_name)
     if not os.path.exists(os.path.join(data_dir, dataset_name)):
@@ -166,9 +167,13 @@ def split_train_val(train_meta_df, ratio=0.9):
     return train_df, val_df
 
 
-# ref: https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html
-# ref: https://www.kaggle.com/code/khanhlvg/cots-detection-w-tensorflow-object-detection-api
-# ref: https://github.com/datitran/raccoon_dataset
+'''
+ref: https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html
+ref: https://www.kaggle.com/code/khanhlvg/cots-detection-w-tensorflow-object-detection-api
+ref: https://github.com/datitran/raccoon_dataset
+''' # noqa
+
+
 def create_tf_example(row, data_path):
     """
     Create  tf example
@@ -199,7 +204,8 @@ def create_tf_example(row, data_path):
     y_top = []
     x_right = []
     y_bottom = []
-    # bbox values need to be normalized (not quite sure why, but everybody does it)
+    # bbox values need to be normalized
+    # (not quite sure why, but everybody does it)
     for anno in annotations:
         x_left.append(anno["x_left"] / image.size[0])  # Divide by width
         y_top.append(anno["y_top"] / image.size[1])  # Divide by heigth

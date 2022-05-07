@@ -10,4 +10,5 @@ dependencies:
   - pytest
   - tensorflow-object-detection-api
   - kaggle
+  - pycodestyle pycodestyle_magic
   

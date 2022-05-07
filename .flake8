@@ -1,7 +1,8 @@
 [flake8]
 max-line-length = 80
 max-complexity = 10
-ignore = E203, W503
+ignore = E203, W503, F405, E402, F403
 exclude =
     .git,
     __pycache__
+    prep_data.ipynb 
