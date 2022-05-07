@@ -110,7 +110,7 @@ def test_split_train_val():
 
     assert n_result_train == n_train_records and n_result_valid == n_result_valid
 
-
+# TODO Create test for create_tf_example
 @pytest.mark.create_tf_example
 def test_create_tf_example():
     row = train_meta_df.iloc[16]
