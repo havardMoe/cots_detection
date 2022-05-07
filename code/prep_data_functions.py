@@ -1,12 +1,10 @@
 import tensorflow as tf
 import os
 import shutil
-import pandas as pd
 from object_detection.utils import dataset_util
 import json
 from PIL import Image
 import io
-import numpy as np
 import zipfile
 from kaggle.api.kaggle_api_extended import KaggleApi
 
@@ -92,9 +90,9 @@ def fix_anno(anno):
 
 
 def to_pascal(row):
-    '''
-        Changes the format on bbox from coco to pascal.
-    '''
+    """
+    Changes the format on bbox from coco to pascal.
+    """
     coco_list = row["annotations_coco"]
     pascal_list = []
     for coco in coco_list:
@@ -113,9 +111,9 @@ def to_pascal(row):
 
 
 def box_id(row, class_id):
-    '''
-        returns a list with ids for the bboxes
-    '''
+    """
+    returns a list with ids for the bboxes
+    """
     anno = row["annotations_pascal"]
     N = len(anno)
     if N == 0:
@@ -134,9 +132,9 @@ def box_class_names(row, class_name):
 
 
 def create_label_map(data_dir, class_id, class_name):
-    '''
-        Create label map.
-    '''
+    """
+    Create label map.
+    """
     label_map = f"""item {{
     id:{class_id}
     name:"{class_name}"
@@ -160,9 +158,9 @@ def create_label_map(data_dir, class_id, class_name):
 
 
 def split_train_val(train_meta_df, ratio=0.9):
-    '''
-        Split into train and validation dataframes on ratio 
-    '''
+    """
+    Split into train and validation dataframes on ratio
+    """
     train_df = train_meta_df.sample(frac=ratio)
     val_df = train_meta_df.drop(train_df.index)
     return train_df, val_df
@@ -172,9 +170,9 @@ def split_train_val(train_meta_df, ratio=0.9):
 # ref: https://www.kaggle.com/code/khanhlvg/cots-detection-w-tensorflow-object-detection-api
 # ref: https://github.com/datitran/raccoon_dataset
 def create_tf_example(row, data_path):
-    '''
-        Create  tf example
-    '''
+    """
+    Create  tf example
+    """
     # Define names for row variables
     image_id = row["image_id"]
     annotations = row["annotations_pascal"]
@@ -248,9 +246,9 @@ def create_tf_example(row, data_path):
 
 
 def create_tfrecod(df, output_path, data_dir, play=("None", False)):
-    '''
-        Create tf record
-    '''
+    """
+    Create tf record
+    """
     if play[1]:
         if play[0] == "valid":
             df = df.head(4)
