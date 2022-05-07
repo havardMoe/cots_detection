@@ -10,5 +10,9 @@ markers = [
     "to_pascal: tests coco to pascal format",
     "box_id: Check if id list is correct",
     "box_class_names: Check if class name list is correct",
-    "create_label_map: Check if label map was correctly created",
+    "create_label_map: Check if label map is correctly created",
+    "split_train_val: Check if split is correct",
+    "create_tf_example: Small test on tf_example creation",
+    "create_tfrecord: Check if tfrecord was created",
+
 ]

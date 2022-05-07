@@ -247,6 +247,6 @@ def create_tfrecod(df, output_path, data_dir, play=("None", False)):
 
     writer = tf.io.TFRecordWriter(output_path)
     for _, row in df.iterrows():
-        tf_exampele = create_tf_example(row=row, data_path=data_dir)
-        writer.write(tf_exampele.SerializeToString())
+        tf_example = create_tf_example(row=row, data_path=data_dir)
+        writer.write(tf_example.SerializeToString())
     writer.close()

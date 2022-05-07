@@ -1,9 +1,16 @@
+from venv import create
 import pytest
 import sys
 import os
 import pandas as pd
 sys.path.append("code")
 from prep_data_functions import *
+from PIL import Image
+from object_detection.utils import dataset_util
+import tensorflow as tf
+import io
+
+
 
 
 @pytest.mark.download_dataset
@@ -110,12 +117,75 @@ def test_split_train_val():
 
     assert n_result_train == n_train_records and n_result_valid == n_result_valid
 
-# TODO Create test for create_tf_example
+# Small test on create_tf_example
 @pytest.mark.create_tf_example
-def test_create_tf_example():
-    row = train_meta_df.iloc[16]
-    k = create_tf_example(row, data_path=data_dir)
-    for key, value in k.features.feature.items():
-        print(key)
+def test_create_tf_example(tmp_path):
+
+    data_dir = tmp_path
+    os.mkdir(os.path.join(data_dir, "tf_record_data"))
+    os.mkdir(os.path.join(data_dir, "tf_record_data", "images"))
+
+    data = {"video_id":0,"sequence":40258, "video_frame":16, "sequence_frame":16, "image_id":"0-16", 
+    "annotations":[{'x': 559, 'y': 213, 'width': 50, 'height': 32}], 
+    "annotations_coco":[{'x': 559, 'y': 213, 'width': 50, 'height': 32}], 
+    "annotations_pascal":[{'x_left': 559, 'y_top': 213, 'x_right': 609, 'y_bottom': 245}],
+    "class_ids":[1], "class_names":['cots']
+        }
+
+    img = Image.new('RGB', size=(1280,720), color=(256,0,0))
+    img.save(os.path.join(data_dir, "tf_record_data", "images", "0-16.jpg"))
+    with tf.io.gfile.GFile(os.path.join(data_dir, "tf_record_data", "images", "0-16.jpg"), "rb") as f:
+        encoded_img = f.read()
+
+    encoded_img_bytes_io = io.BytesIO(encoded_img)
+    original_image = Image.open(encoded_img_bytes_io)
+
+    row = pd.Series(data)
+    example_tf = create_tf_example(row, data_path=data_dir)
+
+    result = None
+    for key, value in example_tf.features.feature.items():
+        if key == 'image/encoded':
+            kind = value.WhichOneof("kind")
+            result = np.array(getattr(value, kind).value)
+    encoded_img_bytes_io = io.BytesIO(result)
+    result_image = Image.open(encoded_img_bytes_io)
+
+    assert original_image == result_image
 
 
+@pytest.mark.create_tfrecord
+def test_create_tfrecord(tmp_path):
+    data_dir = tmp_path
+    os.mkdir(os.path.join(data_dir, "tf_record_data"))
+    os.mkdir(os.path.join(data_dir, "tf_record_data","training_data"))
+    os.mkdir(os.path.join(data_dir, "tf_record_data", "images"))
+    output_path_train = os.path.join(
+        data_dir, "tf_record_data", "training_data", "train.tfrecord"
+    )
+
+    data = [{"video_id":0,"sequence":40258, "video_frame":16, "sequence_frame":16, "image_id":"0-16", 
+    "annotations":[{'x': 559, 'y': 213, 'width': 50, 'height': 32}], 
+    "annotations_coco":[{'x': 559, 'y': 213, 'width': 50, 'height': 32}], 
+    "annotations_pascal":[{'x_left': 559, 'y_top': 213, 'x_right': 609, 'y_bottom': 245}],
+    "class_ids":[1], "class_names":['cots']},
+    {"video_id":0,"sequence":40258, "video_frame":16, "sequence_frame":16, "image_id":"0-17", 
+    "annotations":[{'x': 559, 'y': 213, 'width': 50, 'height': 32}], 
+    "annotations_coco":[{'x': 559, 'y': 213, 'width': 50, 'height': 32}], 
+    "annotations_pascal":[{'x_left': 559, 'y_top': 213, 'x_right': 609, 'y_bottom': 245}],
+    "class_ids":[1], "class_names":['cots']
+        }]
+    df = pd.DataFrame(data)
+
+    img = Image.new('RGB', size=(1280,720), color=(256,0,0))
+    img.save(os.path.join(data_dir, "tf_record_data", "images", "0-16.jpg"))
+    img2 = Image.new('RGB', size=(1280,720), color=(256,0,0))
+    img2.save(os.path.join(data_dir, "tf_record_data" ,"images", "0-17.jpg"))
+
+    create_tfrecod(
+            df=df,
+            output_path=output_path_train,
+            data_dir=data_dir,
+            play=("None", False)
+            )
+    assert os.path.exists(output_path_train) == True
