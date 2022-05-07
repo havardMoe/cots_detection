@@ -134,6 +134,9 @@ def box_class_names(row, class_name):
 
 
 def create_label_map(data_dir, class_id, class_name):
+    '''
+        Create label map.
+    '''
     label_map = f"""item {{
     id:{class_id}
     name:"{class_name}"
@@ -157,6 +160,9 @@ def create_label_map(data_dir, class_id, class_name):
 
 
 def split_train_val(train_meta_df, ratio=0.9):
+    '''
+        Split into train and validation dataframes on ratio 
+    '''
     train_df = train_meta_df.sample(frac=ratio)
     val_df = train_meta_df.drop(train_df.index)
     return train_df, val_df
@@ -166,6 +172,9 @@ def split_train_val(train_meta_df, ratio=0.9):
 # ref: https://www.kaggle.com/code/khanhlvg/cots-detection-w-tensorflow-object-detection-api
 # ref: https://github.com/datitran/raccoon_dataset
 def create_tf_example(row, data_path):
+    '''
+        Create  tf example
+    '''
     # Define names for row variables
     image_id = row["image_id"]
     annotations = row["annotations_pascal"]
@@ -239,6 +248,9 @@ def create_tf_example(row, data_path):
 
 
 def create_tfrecod(df, output_path, data_dir, play=("None", False)):
+    '''
+        Create tf record
+    '''
     if play[1]:
         if play[0] == "valid":
             df = df.head(4)
