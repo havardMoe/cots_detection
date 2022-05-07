@@ -11,4 +11,5 @@ dependencies:
   - tensorflow-object-detection-api
   - kaggle
   - pycodestyle pycodestyle_magic
+  - pandas
   
