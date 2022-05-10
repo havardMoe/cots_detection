@@ -7,6 +7,7 @@ from PIL import Image
 import io
 import zipfile
 from kaggle.api.kaggle_api_extended import KaggleApi
+import numpy as np
 
 
 def download_dataset(data_dir, dataset_name):
@@ -166,6 +167,21 @@ def split_train_val(train_meta_df, ratio=0.9):
     val_df = train_meta_df.drop(train_df.index)
     return train_df, val_df
 
+# Ref: https://stackoverflow.com/questions/38250710/how-to-split-data-into-3-sets-train-validation-and-test
+def split_train_val_test(train_meta_df, ratio=[0.8, 0.1, 0.1]):
+    """
+    Split into train and validation dataframes on ratio
+    """
+    train_frac = ratio[0]
+    val_frac = train_frac + ratio[1]
+
+    train_df, val_df, test_df = np.split(
+        train_meta_df.sample(frac=1),
+        [int(train_frac * len(train_meta_df)), int(val_frac * len(train_meta_df))],
+        )   
+
+    return train_df, val_df, test_df
+
 
 '''
 ref: https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html
@@ -251,16 +267,14 @@ def create_tf_example(row, data_path):
     return tf_example
 
 
-def create_tfrecod(df, output_path, data_dir, play=("None", False)):
+def create_tfrecod(df, output_path, data_dir, play=False):
     """
     Create tf record
     """
-    if play[1]:
-        if play[0] == "valid":
-            df = df.head(4)
-        elif play[1] == "train":
-            df = df.head(40)
-
+    if play:
+        n_samples = round(len(df)*0.1) #10%
+        df = df.head(n_samples)
+      
     writer = tf.io.TFRecordWriter(output_path)
     for _, row in df.iterrows():
         tf_example = create_tf_example(row=row, data_path=data_dir)
