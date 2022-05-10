@@ -18,6 +18,7 @@ Detecting COTS (crown-of-thorns starfish) with the use of Tensorflows Object Det
 ## Tech/Framework Used
 - [TensorFlow](https://www.tensorflow.org/api_docs/python/tf)
 - [TensorFlow Object Detection API](https://github.com/tensorflow/models/tree/master/research/object_detection)
+- [Weights and Biases](https://wandb.ai/site)
 
 
 Script  | Description
