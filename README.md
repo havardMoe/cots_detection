@@ -1,8 +1,31 @@
-# IAI Project Template
+<a name="toppp"></a>
+# COTS Detection
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-This repository serves as a template for software projects.
+Project in DAT550 at the University of Stavanger.  
+Detecting COTS (crown-of-thorns starfish) with the use of Tensorflows Object Detection API. 
+
+#### Table of Contents:  
+- [Tech/Framework Used](#tech)  
+- [Short Description](#desc)  
+- [User Guide](#usr-guide)  
+- [License](#license)
+
+<a name="tech"></a>
+## Tech/Framework Used
+- [TensorFlow](https://www.tensorflow.org/api_docs/python/tf)
+- [TensorFlow Object Detection API](https://github.com/tensorflow/models/tree/master/research/object_detection)
+
+
+Script  | Description
+------------- | ------------- 
+[prep_data_functions.py](https://github.com/havardMoe/cots_detection/blob/59836d38673fdc7e8f771f0a619c543ef1c8ba19/code/prep_data_functions.py)  | Contains functions used to transform the data into tfrecords format.
+[prep_data.ipynb](https://github.com/havardMoe/cots_detection/blob/59836d38673fdc7e8f771f0a619c543ef1c8ba19/code/prep_data.ipynb)  | Notebook used to transform the data into tfrecord format.
+
+<a name="usr-guide"></a>
+## User Guide:
+coming soon...
 
 # Testing and GitHub actions
 
