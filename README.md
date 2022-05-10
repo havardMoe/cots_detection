@@ -32,11 +32,11 @@ Script  | Description
 ```bash
 conda env create --name cots --file=environment.yaml
 ```
-2. Create a Kaggle account and set up kaggle api. 
-  - Create account : [Kaggle](https://www.kaggle.com/)
-  - Set up Kaggle API: [API guide](https://www.kaggle.com/docs/api)
+2. Create a Kaggle account and set up Kaggle API. 
+    - Create account : [Kaggle](https://www.kaggle.com/)
+    - Set up Kaggle API: [API guide](https://www.kaggle.com/docs/api)
 3. Transforming data to tfrecord format.
-  - To transform the data to tfrecord format with train, validation and test files run the [prep_data.ipynb](https://github.com/havardMoe/cots_detection/blob/59836d38673fdc7e8f771f0a619c543ef1c8ba19/code/prep_data.ipynb) notebook.
+      - To transform the data to tfrecord format with train, validation and test files run the [prep_data.ipynb](https://github.com/havardMoe/cots_detection/blob/59836d38673fdc7e8f771f0a619c543ef1c8ba19/code/prep_data.ipynb) notebook.
 
 # Testing and GitHub actions
 
