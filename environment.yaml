@@ -16,5 +16,6 @@ dependencies:
     - pycodestyle 
     - pycodestyle_magic
     - pandas
+    - wandb
 
   
