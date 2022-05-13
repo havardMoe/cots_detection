@@ -6,7 +6,7 @@
 Project in DAT550 at the University of Stavanger.  
 Detecting COTS (crown-of-thorns starfish) with the use of Tensorflows Object Detection API.  
 
-![Image from dataset](https://github.com/havardMoe/cots_detection/blob/cab3dfde862b47d9aa4af29996229096a5917728/images/vis.png)
+![Image from dataset](https://github.com/havardMoe/cots_detection/blob/1181c8e0b353cc62dfda2134c953d412c730573c/images/vis.png)
 
 #### Table of Contents:  
 - [Tech/Framework Used](#tech)  
