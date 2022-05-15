@@ -5,7 +5,7 @@
 
 Project in DAT550 at the University of Stavanger.  
 Detecting COTS (crown-of-thorns starfish) with the use of Tensorflows Object Detection API.  
-The results for Weights & Biases are available at [COTS-detectors W&B](https://wandb.ai/cots-detectors)
+The results are available at [COTS-detectors W&B](https://wandb.ai/cots-detectors)
 
 ![Image from dataset](https://github.com/havardMoe/cots_detection/blob/1181c8e0b353cc62dfda2134c953d412c730573c/images/vis.png)
 
