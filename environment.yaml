@@ -3,11 +3,19 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.7
+  - python=3.8
   - black
   - flake8
   - pre-commit
+  - pip
   - pytest
-  - tensorflow-object-detection-api
   - kaggle
+  - tensorflow
+  - pip:
+    - tensorflow-object-detection-api
+    - pycodestyle 
+    - pycodestyle_magic
+    - pandas
+    - wandb
+
   
