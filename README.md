@@ -40,7 +40,7 @@ conda env create --name cots --file=environment.yaml
 - To transform the data to tfrecord format with train, validation and test files run the [prep_data.ipynb](https://github.com/havardMoe/cots_detection/blob/59836d38673fdc7e8f771f0a619c543ef1c8ba19/code/prep_data.ipynb) notebook.
 ### 4. Train, Evaluate and Compare Results
 - Open the [train_eval_sweep.ipynb](https://github.com/havardMoe/cots_detection/blob/75ef40adb1d68bfe66d7f5fe7ef61ceca3914454/code/Colab%20Notebooks/train_eval_sweep.ipynb) notebook, and follow the given steps.
-- **Note:** A detailed guide on how to download and install the Tensorflow Object Detection Api on Colab can be found [here](https://medium.com/@sourabhsinglasoftware/tensorflow-object-detection-api-setup-on-colab-e934be20f521)
+- **Note:** A detailed guide on how to download and install the Tensorflow Object Detection Api on Colab can be found [here](https://medium.com/@sourabhsinglasoftware/tensorflow-object-detection-api-setup-on-colab-e934be20f521).
 
 # Testing and GitHub actions
 
