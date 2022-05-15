@@ -26,7 +26,7 @@ Script  | Description
 ------------- | ------------- 
 [prep_data_functions.py](https://github.com/havardMoe/cots_detection/blob/59836d38673fdc7e8f771f0a619c543ef1c8ba19/code/prep_data_functions.py)  | Contains functions used to transform the data into tfrecords format.
 [prep_data.ipynb](https://github.com/havardMoe/cots_detection/blob/59836d38673fdc7e8f771f0a619c543ef1c8ba19/code/prep_data.ipynb)  | Notebook used to transform the data into tfrecord format.
-
+[auto_training.ipynb](https://github.com/havardMoe/cots_detection/blob/c214feb8b1387b67cedda76e1d0d3ad339b1f9ea/code/Colab%20Notebooks/auto_training.ipynb)  | Notebook used for training of models.
 <a name="usr-guide"></a>
 ## User Guide:
 ### 1. Create conda environment:
