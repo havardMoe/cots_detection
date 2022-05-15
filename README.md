@@ -13,7 +13,6 @@ The results are available at [COTS-detectors W&B](https://wandb.ai/cots-detector
 - [Tech/Framework Used](#tech)  
 - [Short Description](#desc)  
 - [User Guide](#usr-guide)  
-- [License](#license)
 
 <a name="tech"></a>
 ## Tech/Framework Used
